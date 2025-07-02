@@ -80,7 +80,7 @@ This solution balances functionality with simplicity, making it suitable for a b
     - Defines the executable (`drone_camera_sim`) and links it to `main.cpp`.
     - Sets the C++ standard to C++11 for compatibility.
 
-- **README.md**:
+- **Manual.md**:
   - **Purpose**: This is a user guide for setting up and running the program.
   - **Contents**:
     - Lists prerequisites (Ubuntu 24.04, OpenCV, CMake).
