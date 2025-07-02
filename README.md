@@ -1,3 +1,21 @@
+### Asignment by Lendurai:
+
+1. Computer vision programming
+- Find a satellite image, covering at least 1km^2
+- Write a C++ program that takes as an input (satellite_image, x, y, altitude_m, tilt_degrees), and:
+- generates a “camera image” that is an imitation of an image from a drone camera
+- captured at location x,y of the satellite image (in coordinates relative to image size, so that 0.5,0.5 is the center of the image)
+- at the altitude altitude_m
+- with pitch angle: tilt_degrees
+  
+Bonus points for:
+- instead of being given the image, the program acquires the satellite image for any given geographical coordinates
+- “camera image” looks like it’s a different season (f. ex. winter instead of summer)
+- “camera image” looks like it’s from a thermal camera
+
+  
+---
+### Project definition:
 C++ program for Computer vision progamming assignment at Lendurai including `main.cpp`, `CMakeLists.txt`, and `Manual.md`. The code uses OpenCV for image processing, implements a basic perspective transformation, and includes simplified versions of the bonus features (seasonal changes and thermal camera simulation). A report is included as inline comments in `main.cpp`.
 
 ---
