@@ -1,4 +1,4 @@
-C++ program for Computer vision progamming assignment at Lendurai including `main.cpp`, `CMakeLists.txt`, and `README.md`. The code uses OpenCV for image processing, implements a basic perspective transformation, and includes simplified versions of the bonus features (seasonal changes and thermal camera simulation). A report is included as inline comments in `main.cpp`.
+C++ program for Computer vision progamming assignment at Lendurai including `main.cpp`, `CMakeLists.txt`, and `Manual.md`. The code uses OpenCV for image processing, implements a basic perspective transformation, and includes simplified versions of the bonus features (seasonal changes and thermal camera simulation). A report is included as inline comments in `main.cpp`.
 
 ---
 
