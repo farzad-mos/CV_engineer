@@ -61,3 +61,90 @@ Hi, I'm excited to present the Drone Camera Image Simulator I built for the Lend
 - **Report**: Included as inline comments in `main.cpp` for simplicity, covering approach, assumptions, and testing.
 
 This solution balances functionality with simplicity, making it suitable for a beginner to understand and present. It meets the core requirements and includes basic bonus features, with clear documentation for building and running on Ubuntu 24.04.
+
+
+---
+
+# How to run the Drone Camera Image Simulator program, 
+The program generates a simulated drone camera image from a satellite image. it is designed to run on Ubuntu 24.04 and uses OpenCV for image processing. It takes a satellite image and parameters (x, y coordinates, altitude, and tilt angle) to produce the output, with optional winter or thermal effects.
+
+## Prerequisites
+- **Operating System**: Ubuntu 24.04
+- **Dependencies**:
+  - OpenCV 4.x (image processing library)
+  - CMake 3.10+ (build tool)
+- **Satellite Image**: A PNG, JPEG, or TIFF image (at least 1 km², e.g., 1000x1000 pixels at 0.5 m/pixel resolution). You can download sample images from public sources like USGS or use your own.
+
+## Installation
+Follow these steps to set up and build the program:
+
+1. **Install Dependencies**:
+   Open a terminal and run:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install libopencv-dev cmake
+   ```
+
+2. **Download the Code**:
+   - Copy the provided files (`main.cpp`, `CMakeLists.txt`) into a folder (e.g., `drone_camera_sim`).
+   - Alternatively, clone the repository if available, or create the folder manually:
+     ```bash
+     mkdir drone_camera_sim
+     cd drone_camera_sim
+     ```
+
+3. **Build the Program**:
+   - Create a build directory and compile the code:
+     ```bash
+     mkdir build && cd build
+     cmake ..
+     make
+     ```
+   - This generates the executable `drone_camera_sim` in the `build` folder.
+
+## Running the Program
+1. **Basic Command**:
+   Run the program from the `build` folder with the following command:
+   ```bash
+   ./drone_camera_sim --image <path_to_image> --x <x_coord> --y <y_coord> --altitude <altitude_m> --tilt <tilt_degrees> --output <output.png>
+   ```
+   - Replace `<path_to_image>` with the path to your satellite image (e.g., `../satellite.png`).
+   - `<x_coord>` and `<y_coord>` are numbers between 0 and 1 (e.g., 0.5 for image center).
+   - `<altitude_m>` is the drone’s altitude in meters (e.g., 100).
+   - `<tilt_degrees>` is the camera tilt angle in degrees (e.g., 30, between -90 and 90).
+   - `<output.png>` is the path for the output image (e.g., `output.png`).
+
+   Example:
+   ```bash
+   ./drone_camera_sim --image ../satellite.png --x 0.5 --y 0.5 --altitude 100 --tilt 30 --output output.png
+   ```
+
+2. **Optional Features**:
+   - **Winter Effect**: Add `--winter` to make the image look like winter (e.g., green areas turn snowy):
+     ```bash
+     ./drone_camera_sim --image ../satellite.png --x 0.5 --y 0.5 --altitude 100 --tilt 30 --output output_winter.png --winter
+     ```
+   - **Thermal Effect**: Add `--thermal` to mimic a thermal camera (jet colormap):
+     ```bash
+     ./drone_camera_sim --image ../satellite.png --x 0.5 --y 0.5 --altitude 100 --tilt 30 --output output_thermal.png --thermal
+     ```
+   - Note: You can use either `--winter` or `--thermal`, not both together.
+
+3. **Output**:
+   - The program generates a PNG image at the specified output path (e.g., `output.png`).
+   - If successful, it prints: `Output image saved to <output_path>`.
+   - If there’s an error (e.g., invalid image or parameters), it displays an error message.
+
+## Troubleshooting
+- **Image Not Found**: Ensure the satellite image path is correct and the file is a valid PNG, JPEG, or TIFF.
+- **Invalid Parameters**: Check that x and y are between 0 and 1, altitude is positive, and tilt is between -90 and 90.
+- **Build Errors**: Verify that OpenCV and CMake are installed correctly. Run `cmake --version` and `pkg-config --modversion opencv4` to check.
+- **Output Looks Wrong**: Ensure the satellite image has sufficient resolution (e.g., 0.5–1 m/pixel). Try different altitude or tilt values to adjust the view.
+
+## Notes
+- The program assumes the satellite image has a resolution of 0.5 meters per pixel.
+- The output image is 640x480 pixels.
+- The camera’s field of view is set to 60 degrees for realistic simulation.
+- The program does not fetch images from an API; you must provide a local satellite image.
+
+For more details, see the inline comments in `main.cpp` or contact the developer. Happy simulating!
