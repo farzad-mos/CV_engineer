@@ -3,11 +3,8 @@ C++ program for Computer vision progamming assignment at Lendurai including `mai
 ---
 
 
-### Introduction for Presentation
-
-**How I Wrote This Code**
-
-Hi, I'm excited to present the Drone Camera Image Simulator I built for the Lendurai job assignment. As someone with a basic background in programming, I approached this project step-by-step, focusing on making it simple, clear, and functional. Below, I'll explain how I wrote the code in a way that's easy to understand, even for beginners, and how it meets the assignment’s requirements.
+### Introduction
+Drone Camera Image Simulator was built for the Lendurai job assignment. As someone with a basic background in `cpp` programming, I approached this project step-by-step, focusing on making it simple, clear, and functional.
 
 1. **Understanding the Task**:
    - The assignment asked for a C++ program that takes a satellite image and some inputs (x, y coordinates, altitude, and tilt angle) to create an image as if seen from a drone’s camera. I needed to make the output look realistic, like what a drone flying at a certain height and angle would see.
@@ -62,10 +59,36 @@ Hi, I'm excited to present the Drone Camera Image Simulator I built for the Lend
 
 This solution balances functionality with simplicity, making it suitable for a beginner to understand and present. It meets the core requirements and includes basic bonus features, with clear documentation for building and running on Ubuntu 24.04.
 
-
 ---
+# File Content:
 
-# How to run the Drone Camera Image Simulator program, 
+- **main.cpp**:
+  - **Purpose**: This is the main C++ program that does the work of generating a simulated drone camera image from a satellite image.
+  - **Contents**: 
+    - Code to load a satellite image using OpenCV.
+    - Logic to read and validate input parameters (x, y coordinates, altitude, tilt angle) from the command line.
+    - Calculations to transform the satellite image into a drone’s view using a perspective transformation (homography).
+    - Functions for bonus features: a winter effect (changes colors to look snowy) and a thermal effect (applies a jet colormap).
+    - Saves the output as a PNG file.
+    - Includes detailed comments explaining the approach, assumptions (e.g., 0.5 m/pixel resolution, 60° field of view), and testing notes.
+
+- **CMakeLists.txt**:
+  - **Purpose**: This file tells CMake how to build the program on Ubuntu 24.04.
+  - **Contents**:
+    - Specifies the project name and minimum CMake version (3.10).
+    - Finds and links the OpenCV library needed for image processing.
+    - Defines the executable (`drone_camera_sim`) and links it to `main.cpp`.
+    - Sets the C++ standard to C++11 for compatibility.
+
+- **README.md**:
+  - **Purpose**: This is a user guide for setting up and running the program.
+  - **Contents**:
+    - Lists prerequisites (Ubuntu 24.04, OpenCV, CMake).
+    - Provides step-by-step instructions to install dependencies, build the program, and run it with example commands.
+    - Explains input parameters (e.g., `--image`, `--x`, `--y`, `--altitude`, `--tilt`, `--output`) and optional flags (`--winter`, `--thermal`).
+    - Includes notes on testing and troubleshooting (e.g., handling invalid inputs or image formats).
+---
+# How to run: 
 The program generates a simulated drone camera image from a satellite image. it is designed to run on Ubuntu 24.04 and uses OpenCV for image processing. It takes a satellite image and parameters (x, y coordinates, altitude, and tilt angle) to produce the output, with optional winter or thermal effects.
 
 ## Prerequisites
