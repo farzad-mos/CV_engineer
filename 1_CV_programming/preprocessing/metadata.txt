@@ -1,0 +1,411 @@
+{
+  "producerGranuleId": "MOD02QKM.A2024249.0835.061.2024249191823.hdf",
+  "timeStart": "2024-09-05T08:35:00.000Z",
+  "updated": "2024-09-05T19:31:50.040Z",
+  "datasetId": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 250m",
+  "dataCenter": "LAADS",
+  "title": "LAADS:8441711988",
+  "coordinateSystem": "GEODETIC",
+  "dayNightFlag": "DAY",
+  "timeEnd": "2024-09-05T08:40:00.000Z",
+  "id": "G3228700597-LAADS",
+  "originalFormat": "ECHO10",
+  "granuleSize": 151.933041572571,
+  "browseFlag": false,
+  "polygons": [
+    [
+      "45.225771 8.902029 41.455068 37.438631 57.780873 50.947686 63.653382 8.904912 45.225771 8.902029"
+    ]
+  ],
+  "collectionConceptId": "C1378579425-LAADS",
+  "onlineAccessFlag": true,
+  "links": [
+    {
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+      "type": "application/x-hdfeos",
+      "hreflang": "en-US",
+      "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD02QKM/MOD02QKM.A2024249.0835.061.2024249191823.hdf"
+    },
+    {
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+      "type": "application/x-hdfeos",
+      "hreflang": "en-US",
+      "href": "s3://prod-lads/MOD02QKM/MOD02QKM.A2024249.0835.061.2024249191823.hdf"
+    },
+    {
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+      "type": "text/html",
+      "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+      "hreflang": "en-US",
+      "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD02QKM/2024/249/MOD02QKM.A2024249.0835.061.2024249191823.hdf.html"
+    },
+    {
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+      "type": "text/html",
+      "title": "A link to Data set landing page (Data Set Landing Page)",
+      "hreflang": "en-US",
+      "href": "http://doi.org/10.5067/MODIS/MOD02QKM.061"
+    },
+    {
+      "inherited": true,
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+      "hreflang": "en-US",
+      "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/M1054D_PUG_083112_final.pdf"
+    },
+    {
+      "inherited": true,
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+      "hreflang": "en-US",
+      "href": "https://doi.org/10.5067/MODIS/MOD02QKM.061"
+    },
+    {
+      "inherited": true,
+      "length": "0KB",
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+      "hreflang": "en-US",
+      "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD02QKM--61"
+    },
+    {
+      "inherited": true,
+      "length": "0KB",
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+      "hreflang": "en-US",
+      "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD02QKM/"
+    },
+    {
+      "inherited": true,
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+      "type": "text/html",
+      "hreflang": "en-US",
+      "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD02QKM/contents.html"
+    },
+    {
+      "inherited": true,
+      "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+      "hreflang": "en-US",
+      "href": "https://mcst.gsfc.nasa.gov/sites/mcst.gsfc/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+    }
+  ],
+  "isOpenSearch": false,
+  "formattedTemporal": [
+    "2024-09-05 08:35:00",
+    "2024-09-05 08:40:00"
+  ],
+  "thumbnail": "https://searchprodapi-1167262027.auto.earthdatacloud.nasa.gov/scale/granules/G3228700597-LAADS?h=85&w=85&ee=prod",
+  "spatial": {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              8.902029,
+              45.225771
+            ],
+            [
+              11.6086898968,
+              45.1877890208
+            ],
+            [
+              14.3087156338,
+              45.0860097135
+            ],
+            [
+              16.9961598938,
+              44.9208852409
+            ],
+            [
+              19.66529674,
+              44.6931407042
+            ],
+            [
+              22.3107140714,
+              44.4037592856
+            ],
+            [
+              24.9273944663,
+              44.0539626934
+            ],
+            [
+              27.5107808741,
+              43.6451878035
+            ],
+            [
+              30.0568256553,
+              43.1790605027
+            ],
+            [
+              32.5620225227,
+              42.6573677837
+            ],
+            [
+              35.0234218975,
+              42.0820291121
+            ],
+            [
+              37.438631,
+              41.455068
+            ],
+            [
+              38.3409612317,
+              42.9931112138
+            ],
+            [
+              39.2895089764,
+              44.523703292
+            ],
+            [
+              40.2891125262,
+              46.0460217659
+            ],
+            [
+              41.3452053284,
+              47.5591333645
+            ],
+            [
+              42.463903454,
+              49.0619752855
+            ],
+            [
+              43.6521059956,
+              50.5533328668
+            ],
+            [
+              44.9176097071,
+              52.031812914
+            ],
+            [
+              46.2692388743,
+              53.4958117968
+            ],
+            [
+              47.7169906957,
+              54.9434772672
+            ],
+            [
+              49.2721951446,
+              56.3726627863
+            ],
+            [
+              50.947686,
+              57.780873
+            ],
+            [
+              47.890323351,
+              58.8046961166
+            ],
+            [
+              44.6542538237,
+              59.7519457027
+            ],
+            [
+              41.2380372056,
+              60.6151496871
+            ],
+            [
+              37.6443392617,
+              61.3866412879
+            ],
+            [
+              33.8808457501,
+              62.0587701502
+            ],
+            [
+              29.9610214273,
+              62.6241714629
+            ],
+            [
+              25.9045537539,
+              63.076082943
+            ],
+            [
+              21.7373186533,
+              63.4086880226
+            ],
+            [
+              17.4907459335,
+              63.6174523357
+            ],
+            [
+              13.2005498232,
+              63.6994132228
+            ],
+            [
+              8.904912,
+              63.653382
+            ],
+            [
+              8.9045122858,
+              61.9781446398
+            ],
+            [
+              8.9041542153,
+              60.3029072785
+            ],
+            [
+              8.9038310778,
+              58.6276699164
+            ],
+            [
+              8.9035375207,
+              56.9524325536
+            ],
+            [
+              8.9032692215,
+              55.2771951901
+            ],
+            [
+              8.9030226506,
+              53.6019578261
+            ],
+            [
+              8.9027948972,
+              51.9267204616
+            ],
+            [
+              8.9025835384,
+              50.2514830967
+            ],
+            [
+              8.9023865403,
+              48.5762457314
+            ],
+            [
+              8.9022021827,
+              46.9010083658
+            ],
+            [
+              8.902029,
+              45.225771
+            ]
+          ]
+        ]
+      ]
+    }
+  },
+  "conceptId": "G3228700597-LAADS",
+  "dataGranule": {
+    "dayNightFlag": "Day",
+    "identifiers": [
+      {
+        "identifier": "MOD02QKM.A2024249.0835.061.2024249191823.hdf",
+        "identifierType": "ProducerGranuleId"
+      }
+    ],
+    "productionDateTime": "2024-09-05T19:18:23.000Z",
+    "archiveAndDistributionInformation": [
+      {
+        "name": "Not provided",
+        "size": 151.933041572571,
+        "sizeInBytes": 159313341,
+        "checksum": {
+          "value": "ae2322bfdfd3e73662da411b1de80c08",
+          "algorithm": "MD5"
+        },
+        "sizeUnit": "MB"
+      }
+    ]
+  },
+  "granuleUr": "LAADS:8441711988",
+  "hasAllMetadata": true,
+  "measuredParameters": null,
+  "metadataUrls": {
+    "atom": {
+      "title": "ATOM",
+      "href": "https://cmr.earthdata.nasa.gov/search/concepts/G3228700597-LAADS.atom"
+    },
+    "echo10": {
+      "title": "ECHO 10",
+      "href": "https://cmr.earthdata.nasa.gov/search/concepts/G3228700597-LAADS.echo10"
+    },
+    "iso19115": {
+      "title": "ISO 19115",
+      "href": "https://cmr.earthdata.nasa.gov/search/concepts/G3228700597-LAADS.iso19115"
+    },
+    "native": {
+      "title": "Native",
+      "href": "https://cmr.earthdata.nasa.gov/search/concepts/G3228700597-LAADS"
+    },
+    "umm_json": {
+      "title": "UMM-G",
+      "href": "https://cmr.earthdata.nasa.gov/search/concepts/G3228700597-LAADS.umm_json"
+    }
+  },
+  "providerDates": [
+    {
+      "date": "2024-09-05T19:21:25.220Z",
+      "type": "Insert"
+    },
+    {
+      "date": "2024-09-05T19:31:50.040Z",
+      "type": "Update"
+    }
+  ],
+  "relatedUrls": [
+    {
+      "url": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD02QKM/MOD02QKM.A2024249.0835.061.2024249191823.hdf",
+      "type": "GET DATA",
+      "mimeType": "application/x-hdfeos"
+    },
+    {
+      "url": "s3://prod-lads/MOD02QKM/MOD02QKM.A2024249.0835.061.2024249191823.hdf",
+      "type": "GET DATA VIA DIRECT ACCESS",
+      "mimeType": "application/x-hdfeos"
+    },
+    {
+      "url": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD02QKM/2024/249/MOD02QKM.A2024249.0835.061.2024249191823.hdf.html",
+      "type": "USE SERVICE API",
+      "subtype": "OPENDAP DATA",
+      "description": "This file may be accessed using OPeNDAP directly from this link",
+      "mimeType": "text/html"
+    },
+    {
+      "url": "http://doi.org/10.5067/MODIS/MOD02QKM.061",
+      "type": "VIEW RELATED INFORMATION",
+      "description": "A link to Data set landing page",
+      "mimeType": "text/html"
+    }
+  ],
+  "spatialExtent": {
+    "horizontalSpatialDomain": {
+      "geometry": {
+        "gpolygons": [
+          {
+            "boundary": {
+              "points": [
+                {
+                  "longitude": 8.902029,
+                  "latitude": 45.225771
+                },
+                {
+                  "longitude": 37.438631,
+                  "latitude": 41.455068
+                },
+                {
+                  "longitude": 50.947686,
+                  "latitude": 57.780873
+                },
+                {
+                  "longitude": 8.904912,
+                  "latitude": 63.653382
+                },
+                {
+                  "longitude": 8.902029,
+                  "latitude": 45.225771
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "temporalExtent": {
+    "rangeDateTime": {
+      "beginningDateTime": "2024-09-05T08:35:00.000Z",
+      "endingDateTime": "2024-09-05T08:40:00.000Z"
+    }
+  }
+}
