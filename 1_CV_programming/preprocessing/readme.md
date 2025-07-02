@@ -1,3 +1,10 @@
+
+1- Download satellite image on: [Dropbox]([https://...](https://www.dropbox.com/scl/fi/go1o1o2ms2ukvx7yenrpw/MOD02QKM.A2024249.0835.061.2024249191823.hdf?rlkey=2jjhxvc9ybygni5nnkyn86spr&st=znb37106&dl=0))
+2- run the script
+
+----
+
+
 This script:
 1. Reads the HDF image using the `h5py` library (HDF5).
 2. Exports metadata to a text file.
