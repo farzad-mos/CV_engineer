@@ -1,3 +1,6 @@
+# this is an old code I was using during my studies to convert HDF to jpeg (a replacement for ENVI tool), I added the crop part to change
+# the size to 1^2km
+
 import h5py
 import numpy as np
 from PIL import Image
