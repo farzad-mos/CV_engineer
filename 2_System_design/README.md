@@ -16,14 +16,176 @@ Bonus points for:
 - the neural network(s) are fully implemented and work (given weights and dataset(s))
 - training can at least overfit to a single data point
 
+Delivery:
+- report and Python/Pytorch code for the NN-based system part
 
 ---
 # Definition
+
+A prototype-level PyTorch code for a neural network system that matches a drone camera image (640x480 pixels) to a specific satellite tile (out of 100+, each 2000x2000 pixels at 0.5 m/pixel) and predicts coordinates within that tile. The system is designed to run in real-time on a Raspberry Pi 5 (RPi5) and uses a single neural network with a MobileNetV3 backbone and two output heads (tile classification and coordinate regression). The solution includes PyTorch code for the model architecture and loss computation, an optional training loop to overfit a single synthetic data point, a report in comments, and deployment instructions. The code is simple, well-commented, and uses minimal dependencies (PyTorch, NumPy). The implementation avoids complex preprocessing like perspective correction, etc., to focus on the core requirements.
+
+---
+
+### Explanation of the Code
+- **Model Architecture**:
+  - Uses `MobileNetV3-Small` (pre-trained) as the backbone for feature extraction, outputting 1280 features.
+  - Two heads:
+    - **Classification Head**: Linear(1280, 512) → ReLU → Dropout(0.3) → Linear(512, 100) for tile ID prediction.
+    - **Regression Head**: Linear(1280, 512) → ReLU → Dropout(0.3) → Linear(512, 2) → Sigmoid for (x, y) coordinates in [0,1].
+  - Total parameters: ~2.5M, suitable for RPi5’s CPU.
+
+- **Loss Function**:
+  - Combines `CrossEntropyLoss` (tile ID) and `MSELoss` (coordinates) with equal weights (0.5 each).
+  - Coordinates are normalized to [0,1] via sigmoid to ensure stable regression.
+
+- **Bonus Features**:
+  - Includes a training loop (`overfit_single_sample`) that overfits a synthetic data point (random 224x224 image, tile ID 42, coordinates [0.5, 0.5]).
+  - Uses Adam optimizer with a high learning rate (0.01) to demonstrate overfitting over 100 epochs.
+  - Prints loss and predictions to verify overfitting.
+
+- **Preprocessing**:
+  - Assumes drone images are resized to 224x224 and normalized to [0,1] (standard for MobileNetV3).
+  - Skips perspective correction for simplicity, relying on MobileNetV3’s robustness to distortions.
+
+- **RPi5 Optimization**:
+  - MobileNetV3-Small is lightweight (~2.5M parameters, <100ms inference on CPU).
+  - Instructions provided to export to ONNX and run with ONNX Runtime for faster inference.
+  - Input size (224x224) reduces computational load.
+
+- **Report**:
+  - Included as inline comments, covering architecture, loss, assumptions, optimizations, and deployment.
+  - Explains design choices (e.g., MobileNetV3 for efficiency, dual-head approach for task separation).
+
+- **Dependencies**:
+  - PyTorch, torchvision (for MobileNetV3), NumPy.
+  - ONNX Runtime for RPi5 deployment.
+
+### Manual for Running the Code
+1. **Prerequisites**:
+   - **System**: Ubuntu 24.04 (or RPi5 with Raspberry Pi OS).
+   - **Dependencies**:
+     ```bash
+     pip3 install torch torchvision numpy onnxruntime
+     ```
+   - **Input**: A drone image (640x480, RGB) and a dataset of 100+ satellite tiles (2000x2000, 0.5 m/pixel) with labels (tile ID, x, y). For prototyping, the code uses synthetic data.
+
+2. **Running Inference**:
+   - Save the script as `image_matching_system.py`.
+   - Run the script to test with synthetic data:
+     ```bash
+     python3 image_matching_system.py
+     ```
+   - Output: Predicted tile ID and coordinates for a random image, plus overfitting results for a synthetic sample.
+
+3. **Deploying on RPi5**:
+   - Install dependencies on RPi5 (see instructions in code comments).
+   - Export the model to ONNX:
+     ```python
+     torch.onnx.export(model, torch.rand(1, 3, 224, 224), "model.onnx", input_names=["input"], output_names=["tile_logits", "coords"])
+     ```
+   - Run inference with ONNX Runtime (see code comments for script).
+   - Preprocess real drone images: Resize to 224x224, normalize to [0,1], convert to CHW format.
+
+4. **Expected Output**:
+   - Sample inference: `Predicted Tile ID: <number>, Coordinates: [x, y]`.
+   - Overfitting: Loss decreases over epochs, with predicted tile ID and coordinates matching the synthetic sample (e.g., tile 42, [0.5, 0.5]).
+
+### Notes
+- **Dataset**: The code uses synthetic data (random image, tile ID, coordinates) due to the lack of a real dataset. For a real implementation, replace with actual drone-satellite pairs.
+- **Real-Time Performance**: MobileNetV3-Small typically achieves <100ms inference on RPi5’s CPU, especially with ONNX optimization. Test on actual hardware to confirm.
+- **Limitations**: Perspective correction and advanced preprocessing (e.g., handling seasonal variations) are omitted for simplicity. These can be added using the C++ program’s homography or data augmentation.
+- **Extensibility**: The model can be fine-tuned with a real dataset. The training loop can be extended for full training by adding a data loader and augmentation.
 ---
 # Introduction
+Explaining on how the neural network-based system (`image_matching_system.py`) was developed for the assignment. The introduction covers the steps taken to write the code, challenges faced, and how it fits for real-time drone image matching on a RPi5 need.
 
+I wrote this in Python using PyTorch, and designed it to be simple yet effective. Below, is a step-by-step explanation on how I wrote the code:
+
+1. **Understanding the Task**:
+   - The assignment asked for a neural network to take a drone image (640x480 pixels, possibly tilted) and find which of 100+ satellite tiles (each 1 km², 2000x2000 pixels) it matches, plus the (x, y) coordinates within that tile.
+   - It needed to run fast on a Raspberry Pi 5, which has limited power compared to a regular computer, and include a loss function to train the network.
+   - There were bonus points for making the system work with a sample and showing it could learn from one data point (called overfitting).
+   - I needed to provide either PyTorch code or a detailed description, plus a report explaining my approach.
+
+2. **Planning the Solution**:
+   - I decided to use a single neural network to keep things simple. It would do two things: pick the right tile (like choosing the correct map) and predict coordinates (like pinpointing a location on that map).
+   - To make it fast on the Raspberry Pi 5, I chose a lightweight neural network called MobileNetV3-Small, which is designed for small devices.
+   - I planned to resize the drone image to 224x224 pixels to make it easier to process, and I assumed the satellite tiles were labeled with tile IDs and coordinates for training.
+   - Since no real dataset was provided, I used synthetic (fake) data for testing, like a random image and made-up labels.
+   - I also needed a loss function to measure how well the network performs, combining two parts: one for picking the tile and one for getting the coordinates right.
+
+3. **Writing the Code**:
+   - **Step 1: Choosing the Tools**: I used PyTorch because it’s beginner-friendly and great for building neural networks. I also used NumPy for handling data. These are common tools that work well on the Raspberry Pi 5 with some tweaks.
+   - **Step 2: Building the Neural Network**:
+     - I started with MobileNetV3-Small, which is pre-trained to recognize images and is fast enough for the Raspberry Pi.
+     - I added two “heads” to the network: one to predict the tile ID (choosing from 100 options) and one to predict coordinates (x, y numbers between 0 and 1).
+     - The tile head uses a few layers to output 100 numbers, where the highest number picks the tile. The coordinate head outputs two numbers (x, y) and uses a “sigmoid” function to keep them between 0 and 1.
+   - **Step 3: Loss Function**:
+     - I created a loss function that checks two things: how well the network picks the correct tile (using cross-entropy loss) and how close the predicted coordinates are to the real ones (using mean squared error, or MSE).
+     - I gave equal importance to both tasks by weighting them 0.5 each, so the network learns both well.
+   - **Step 4: Bonus Feature (Overfitting)**:
+     - For the bonus, I added a training loop to make the network learn from one synthetic data point (a random image, tile ID 42, and coordinates [0.5, 0.5]).
+     - This loop runs 100 times, adjusting the network to get the tile ID and coordinates exactly right for that one sample, proving it can learn.
+   - **Step 5: Making It Run on Raspberry Pi 5**:
+     - I kept the network small (about 2.5 million parameters) to run quickly (under 100 milliseconds per image).
+     - I included instructions to export the model to a format called ONNX, which makes it faster on the Raspberry Pi using a tool called ONNX Runtime.
+   - **Step 6: Testing and Documentation**:
+     - I tested the code with a fake image to check that it outputs a tile ID and coordinates.
+     - For the bonus, I ran the training loop to confirm it overfits (the loss gets very low, and predictions match the sample).
+     - I added a detailed report as comments in the code, explaining the design, assumptions (like image sizes and resolution), and how to run it on the Raspberry Pi.
+
+4. **Challenges**:
+   - **Challenge 1**: Making the network fast enough for the Raspberry Pi 5. I chose MobileNetV3 because it’s designed for low-power devices and used a small input size (224x224 pixels).
+   - **Challenge 2**: Handling two tasks (tile ID and coordinates). I used one network with two heads to keep it simple, and balanced the loss function so both tasks are learned equally.
+   - **Challenge 3**: No real dataset. I used synthetic data (random images and labels) to test the code, which is okay for a prototype since the assignment didn’t require training on real data.
+   - **Challenge 4**: Understanding neural networks. I learned about MobileNetV3 and loss functions from PyTorch tutorials and online resources, which helped me build a clear, working model.
 ---
 # File Content
 
+
+
 ---
 # how to run
+
+Save the Code:
+
+Save the provided script as image_matching_system.py in a folder (e.g., drone_matching).
+
+Run on Ubuntu 24.04 (Testing):
+
+Navigate to the folder:cd drone_matching
+
+
+Run the script to test with synthetic data:python3 image_matching_system.py
+
+
+Output:
+Model parameter count (e.g., ~2.5M parameters).
+Sample inference results: Predicted Tile ID: <number>, Coordinates: [x, y].
+Overfitting results: Loss values over 100 epochs, final predicted tile ID (e.g., 42), and coordinates (e.g., [0.5, 0.5]).
+
+
+Run on RPi5 (Deployment):
+
+Export to ONNX (do this on Ubuntu first):import torch
+from image_matching_system import ImageMatchingNet
+model = ImageMatchingNet(num_tiles=100)
+model.eval()
+torch.onnx.export(model, torch.rand(1, 3, 224, 224), "model.onnx", input_names=["input"], output_names=["tile_logits", "coords"])
+
+
+Copy model.onnx and the following script to RPi5:import onnxruntime as ort
+import numpy as np
+session = ort.InferenceSession("model.onnx")
+input_image = np.random.rand(1, 3, 224, 224).astype(np.float32)  # Replace with real preprocessed image
+tile_logits, coords = session.run(None, {"input": input_image})
+pred_tile = np.argmax(tile_logits, axis=1)
+print(f"Predicted Tile ID: {pred_tile[0]}, Coordinates: {coords[0]}")
+
+
+Save as run_onnx.py and run on RPi5:python3 run_onnx.py
+
+
+Output: Predicted tile ID and coordinates for the input image.
+
+
