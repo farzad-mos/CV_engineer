@@ -20,32 +20,6 @@ This script:
 - **Saving as JPEG**: Converts the processed image to JPEG format using PIL’s `save` method. Note that JPEG is lossy, but it’s compatible with the C++ program.
 - **Error Handling**: Checks for file existence, valid dataset, and sufficient image size. Prints clear error messages for issues like missing files or unsupported shapes.
 
-### Manual for Running the Code
-1. **Prerequisites**:
-   - **Ubuntu 24.04** (or any system with Python 3.x).
-   - **Dependencies**: Install `h5py` and `Pillow`:
-     ```bash
-     pip install h5py Pillow
-     ```
-   - **Input HDF File**: Ensure you have an HDF5 file (e.g., `satellite_image.hdf`) with an image dataset (e.g., named "image"). If it’s HDF4, install `pyhdf` instead and modify the code (see note below).
-
-2. **Setup**:
-   - Save the Python script as `convert_hdf_to_jpeg.py`.
-   - Update the script’s `hdf_file` variable with the path to your HDF file and `dataset_name` with the name of the image dataset (check using an HDF viewer like HDFView if unknown).
-
-3. **Run the Script**:
-   ```bash
-   python3 convert_hdf_to_jpeg.py
-   ```
-   - **Output**:
-     - `metadata.txt`: Contains metadata like dataset shape, data type, and attributes.
-     - `output_image.jpg`: The resized (2000x2000 pixels) JPEG image cropped from the top-right.
-
-4. **Using with C++ Program**:
-   - Use the generated `output_image.jpg` as input for the C++ program:
-     ```bash
-     ./drone_camera_sim --image output_image.jpg --x 0.5 --y 0.5 --altitude 100 --tilt 30 --output drone_output.png
-     ```
 
 ### Notes
 - **HDF4 vs. HDF5**: If your file is HDF4 (common for older satellite data like MODIS), replace `h5py` with `pyhdf.SD`. Modify the reading logic:
