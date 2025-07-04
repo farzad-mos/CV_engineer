@@ -53,19 +53,6 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
    - **Challenge**: Understanding homography and perspective transformation was tricky. I solved it by reading OpenCV tutorials and experimenting with small test images.
    - **Challenge**: Making the winter and thermal effects look realistic without complex tools. I used simple color changes (HSV for winter, colormap for thermal) to keep it beginner-friendly.
    - **Challenge**: Ensuring the program runs on Ubuntu 24.04. I tested it on a virtual machine and included clear setup instructions in the README.
-
-6. **What I Learned**:
-   - I learned how to use OpenCV for image processing and transformations.
-   - I got better at C++ programming, especially handling command-line arguments and error checking.
-   - I understood how to model a camera and calculate what it sees based on altitude and angle.
-   - I practiced writing clear documentation and comments so others can understand my code.
-
-7. **Why This Code is Good**:
-   - It’s simple and focused, meeting the core requirements without unnecessary complexity.
-   - It handles errors well (e.g., invalid inputs or missing images).
-   - It’s easy to build and run on Ubuntu 24.04, with clear instructions.
-   - The bonus features (winter and thermal) show creativity while staying achievable.
-   - The code is well-commented and includes a report explaining my approach, making it easy to review.
 ---
 
 ### Notes
