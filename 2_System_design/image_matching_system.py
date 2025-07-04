@@ -41,16 +41,16 @@ class ImageMatchingNet(nn.Module):
         # Classification head: predict tile ID (100 classes)
         self.tile_head = nn.Sequential(
             nn.Linear(1280, 512),
-            nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.ReLU(),                    # activation
+            nn.Dropout(0.3),              # regularization
             nn.Linear(512, num_tiles)
         )
         
         # Regression head: predict (x, y) coordinates in [0,1]
         self.coord_head = nn.Sequential(
             nn.Linear(1280, 512),
-            nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.ReLU(),          # activation
+            nn.Dropout(0.3),    # Regularization
             nn.Linear(512, 2),  # Output: (x, y)
             nn.Sigmoid()        # Ensure coordinates in [0,1]
         )
