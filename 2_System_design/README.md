@@ -129,11 +129,7 @@ I wrote this in Python using PyTorch, and designed it to be simple yet effective
    - **Step 5: Making It Run on Raspberry Pi 5**:
      - I kept the network small (about 2.5 million parameters) to run quickly (under 100 milliseconds per image).
      - I included instructions to export the model to a format called ONNX, which makes it faster on the Raspberry Pi using a tool called ONNX Runtime.
-   - **Step 6: Testing and Documentation**:
-     - I tested the code with a fake image to check that it outputs a tile ID and coordinates.
-     - For the bonus, I ran the training loop to confirm it overfits (the loss gets very low, and predictions match the sample).
-     - I added a detailed report as comments in the code, explaining the design, assumptions (like image sizes and resolution), and how to run it on the Raspberry Pi.
-
+  
 4. **Challenges**:
    - **Challenge 1**: Making the network fast enough for the Raspberry Pi 5. I chose MobileNetV3 because it’s designed for low-power devices and used a small input size (224x224 pixels).
    - **Challenge 2**: Handling two tasks (tile ID and coordinates). I used one network with two heads to keep it simple, and balanced the loss function so both tasks are learned equally.
