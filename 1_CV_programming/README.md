@@ -57,12 +57,10 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
 
 ### Notes
 - **Bonus Features**: The API integration was omitted to keep the code simple and avoid external dependencies (e.g., libcurl, API keys). Instead, the program relies on local images, with a comment noting how to extend it.
-- **Winter/Thermal Effects**: Used basic color transformations (HSV for winter, jet colormap for thermal) instead of complex neural networks to ensure the code is accessible to someone with average knowledge.
+- **Winter/Thermal Effects**: Used basic color transformations (HSV for winter, jet colormap for thermal) instead of complex neural networks.
 - **Unit Tests**: Omitted explicit unit tests to reduce complexity but included validation checks and testing notes in the README.
 - **Performance**: Relies on OpenCV’s optimized functions; multi-threading and GPU acceleration were not added to keep the code straightforward.
 - **Report**: Included as inline comments in `main.cpp` for simplicity, covering approach, assumptions, and testing.
-
-This solution balances functionality with simplicity, making it suitable for a beginner to understand and present. It meets the core requirements and includes basic bonus features, with clear documentation for building and running on Ubuntu 24.04.
 
 ---
 # File Content:
