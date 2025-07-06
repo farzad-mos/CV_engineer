@@ -44,11 +44,11 @@ A prototype-level PyTorch code for a neural network system that matches a drone 
   - Prints loss and predictions to verify overfitting.
 
 - **Preprocessing**:
-  - Assumes drone images are resized to 224x224 and normalized to [0,1] (standard for MobileNetV3).
+  - Assumes drone images are resized to 224x224 and normalized to [0,1] (standard for MobileNetV3, check [here](https://github.com/farzad-mos/CV_engineer_lendurai/tree/main/2_System_design/preprocessing/lat_lon_conv) for how to convert latitude and longtitude coordinates to nomralized [0,1] values).
   - Skips perspective correction for simplicity, relying on MobileNetV3’s robustness to distortions.
 
 - **RPi5 Optimization**:
-  - MobileNetV3-Small is lightweight (~2.5M parameters, <100ms inference on CPU).
+  - MobileNetV3-Small ([source](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.mobilenet_v3_small.html)) is lightweight (~2.5M parameters, <100ms inference on CPU).
   - Instructions provided to export to ONNX and run with ONNX Runtime for faster inference.
   - Input size (224x224) reduces computational load.
 
@@ -138,7 +138,10 @@ I wrote this in Python using PyTorch, and designed it to be simple yet effective
 ---
 # File Content
 
-
+- **preprocessing**: include preprocessing steps and codes needed for image and corrdinate preproceesing
+- **Manual**: step-by-step manual of how to run the code
+- **README**: an introduction of the project, definitions, challanges and solution which also inclide how the code has been written.
+- **image_matching_system**: Python script of the project including command lines for clear explanation.
 
 ---
 # how to run
