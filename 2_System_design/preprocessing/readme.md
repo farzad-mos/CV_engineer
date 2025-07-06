@@ -3,7 +3,7 @@ Preprocesses an input drone or satellite image  to prepare it for the neural net
 ---
 
 ### Explanation of the Code
-- **Purpose**: Preprocesses a drone or satellite image (e.g., PNG, JPEG, TIFF) to match the input requirements of the neural network in `image_matching_system.py` (224x224 pixels, normalized to [0,1], CHW format).
+- **Purpose**: Preprocesses a drone or satellite image (e.g., PNG, JPEG, TIFF, to convert from HDF5 check [her](https://github.com/farzad-mos/CV_engineer_lendurai/tree/main/1_CV_programming/preprocessing)) to match the input requirements of the neural network in `image_matching_system.py` (224x224 pixels, normalized to [0,1], CHW format).
 - **Steps**:
   - **Load Image**: Uses PIL’s `Image.open` to load the image and converts to RGB to ensure consistency (handles PNG, JPEG, TIFF).
   - **Resize**: Resizes to 224x224 pixels using the LANCZOS resampling method for high quality.
