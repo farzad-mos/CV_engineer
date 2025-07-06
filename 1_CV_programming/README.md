@@ -46,13 +46,12 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
 
 4. **Building and Testing**:
    - I used CMake to make the program easy to build on Ubuntu 24.04. I included a `CMakeLists.txt` file that links OpenCV and sets up the project.
-   - I wrote a `README.md` with clear instructions on how to install OpenCV, build the program, and run it with examples.
-   - I tested the program with sample satellite images I found online (like urban and rural areas) and tried different inputs (e.g., x=0.5, y=0.5, altitude=100m, tilt=30°). I checked that the output images looked correct, with the right part of the satellite image shown and proper tilting.
+   - I tested the program with sample satellite images downloaded from [NASA Earthdata](https://search.earthdata.nasa.gov/) (an urban area of Tallinn by MODIS satellite [details](https://github.com/farzad-mos/CV_engineer_lendurai/blob/main/1_CV_programming/preprocessing/info.txt)) and tried different inputs (e.g., x=0.5, y=0.5, altitude=100m, tilt=30°). I checked that the output images looked correct, with the right part of the satellite image shown and proper tilting.
 
-5. **Challenges and Solutions**:
-   - **Challenge**: Understanding homography and perspective transformation was tricky. I solved it by reading OpenCV tutorials and experimenting with small test images.
-   - **Challenge**: Making the winter and thermal effects look realistic without complex tools. I used simple color changes (HSV for winter, colormap for thermal) to keep it beginner-friendly.
-   - **Challenge**: Ensuring the program runs on Ubuntu 24.04. I tested it on a virtual machine and included clear setup instructions in the README.
+5. **Challenges**:
+   - **Challenge 1**: Understanding homography and perspective transformation was tricky (Founded on [OpenCV tutorials](https://docs.opencv.org/4.x/d9/df8/tutorial_root.html)).
+   - **Challenge 2**: Making the winter and thermal effects look realistic without complex tools. I used simple color changes (HSV for winter, colormap for thermal) to keep it beginner-friendly.
+   - **Challenge 3**: Ensuring the program runs on Ubuntu 24.04. I tested it on a virtual machine and included clear setup instructions in the README.
 ---
 
 ### Notes
@@ -89,7 +88,7 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
     - Lists prerequisites (Ubuntu 24.04, OpenCV, CMake).
     - Provides step-by-step instructions to install dependencies, build the program, and run it with example commands.
     - Explains input parameters (e.g., `--image`, `--x`, `--y`, `--altitude`, `--tilt`, `--output`) and optional flags (`--winter`, `--thermal`).
-    - Includes notes on testing and troubleshooting (e.g., handling invalid inputs or image formats).
+
 ---
 # How to run: 
 The program generates a simulated drone camera image from a satellite image. it is designed to run on Ubuntu 24.04 and uses OpenCV for image processing. It takes a satellite image and parameters (x, y coordinates, altitude, and tilt angle) to produce the output, with optional winter or thermal effects.
@@ -173,4 +172,4 @@ Follow these steps to set up and build the program:
 - The camera’s field of view is set to 60 degrees for realistic simulation.
 - The program does not fetch images from an API; you must provide a local satellite image.
 
-For more details, see the inline comments in `main.cpp` or contact the developer. Happy simulating!
+For more details, see the inline comments in `main.cpp`.
