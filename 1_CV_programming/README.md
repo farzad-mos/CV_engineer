@@ -1,4 +1,4 @@
-### Asignment by Lendurai:
+# Asignment by Lendurai #1:
 
 1. Computer vision programming
 - Find a satellite image, covering at least 1km^2
@@ -29,13 +29,13 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
    - There were also optional “bonus” features, like making the image look like winter or a thermal camera, and fetching images from an API. I focused on the core task and added simple versions of the bonus features to keep things manageable.
 
 2. **Planning the Code**:
-   - I decided to use OpenCV, a popular library for image processing, because it’s great for loading images and doing transformations. I learned about OpenCV from online tutorials and its documentation.
-   - I broke the problem into smaller parts: loading the image, validating inputs, calculating the drone’s view, and saving the output. This made it easier to tackle one piece at a time.
-   - For the drone’s view, I used a “pinhole camera model” (a simple way to mimic how cameras work) and learned about “homography” (a math technique to transform images) from online resources like OpenCV’s website.
+   - I used OpenCV for image processing, for it’s great functions on loading images and doing transformations.
+   - I broke the problem into smaller parts: loading the image, validating inputs, calculating the drone’s view, and saving the output.
+   - For the drone’s view, I used a “pinhole camera model” (a simple way to mimic how cameras work) and learned about “homography” (a math technique to transform images) from online resources.
 
 3. **Writing the Code**:
    - **Step 1: Inputs and Validation**: I wrote code to read command-line arguments (like the image path, x, y, altitude, and tilt). I added checks to make sure the inputs are valid (e.g., x and y between 0 and 1, altitude positive). If something’s wrong, the program shows an error and stops.
-   - **Step 2: Loading the Image**: I used OpenCV’s `imread` function to load the satellite image. I made sure it handles common formats like PNG and JPEG and checks if the image loads correctly.
+   - **Step 2: Loading the Image**: I used OpenCV’s `imread` function to load the satellite image (for common formats; PNG and JPEG) and checks if the image loads correctly (converting and resizing can be done by [Preprocessing](https://github.com/farzad-mos/CV_engineer_lendurai/tree/main/1_CV_programming/preprocessing)
    - **Step 3: Camera Model**: I assumed the drone’s camera has a 60-degree field of view (how wide it sees) and a satellite image resolution of 0.5 meters per pixel. I calculated how much of the image the drone sees based on its altitude using a formula: `size = 2 * altitude * tan(60°/2)`. This tells me how many pixels to include in the view.
    - **Step 4: Perspective Transformation**: I used OpenCV’s `findHomography` and `warpPerspective` functions to transform the satellite image to look like it’s from the drone’s angle. I adjusted the output based on the tilt angle to make it look like the camera is pointing up or down.
    - **Step 5: Bonus Features**:
