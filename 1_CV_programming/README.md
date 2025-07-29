@@ -1,6 +1,4 @@
-# Asignment by Lendurai #1:
-
-1. Computer vision programming
+# 1. Computer vision programming
 - Find a satellite image, covering at least 1km^2
 - Write a C++ program that takes as an input (satellite_image, x, y, altitude_m, tilt_degrees), and:
 - generates a “camera image” that is an imitation of an image from a drone camera
@@ -16,13 +14,13 @@ Bonus points for:
   
 ---
 ### Project definition:
-C++ program for Computer vision progamming assignment at Lendurai including `main.cpp`, `CMakeLists.txt`, and `Manual.md`. The code uses OpenCV for image processing, implements a basic perspective transformation, and includes simplified versions of the bonus features (seasonal changes and thermal camera simulation). A report is included as inline comments in `main.cpp`.
+C++ program for Computer vision progamming assignment including `main.cpp`, `CMakeLists.txt`, and `Manual.md`. The code uses OpenCV for image processing, implements a basic perspective transformation, and includes simplified versions of the bonus features (seasonal changes and thermal camera simulation). A report is included as inline comments in `main.cpp`.
 
 ---
 
 
 ### Introduction
-Drone Camera Image Simulator was built for the Lendurai job assignment. As someone with a basic background in `cpp` programming, I approached this project step-by-step, focusing on making it simple, clear, and functional.
+Drone Camera Image Simulator was built. As someone with a basic background in `cpp` programming, I approached this project step-by-step, focusing on making it simple, clear, and functional.
 
 1. **Understanding the Task**:
    - The assignment asked for a C++ program that takes a satellite image and some inputs (x, y coordinates, altitude, and tilt angle) to create an image as if seen from a drone’s camera. I needed to make the output look realistic, like what a drone flying at a certain height and angle would see.
@@ -35,7 +33,7 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
 
 3. **Writing the Code**:
    - **Step 1: Inputs and Validation**: I wrote code to read command-line arguments (like the image path, x, y, altitude, and tilt). I added checks to make sure the inputs are valid (e.g., x and y between 0 and 1, altitude positive). If something’s wrong, the program shows an error and stops.
-   - **Step 2: Loading the Image**: I used OpenCV’s `imread` function to load the satellite image (for common formats; PNG and JPEG) and checks if the image loads correctly (converting and resizing can be done by [Preprocessing](https://github.com/farzad-mos/CV_engineer_lendurai/tree/main/1_CV_programming/preprocessing)
+   - **Step 2: Loading the Image**: I used OpenCV’s `imread` function to load the satellite image (for common formats; PNG and JPEG) and checks if the image loads correctly (converting and resizing can be done by [Preprocessing](https://github.com/farzad-mos/CV_engineer/tree/main/1_CV_programming/preprocessing)
    - **Step 3: Camera Model**: I assumed the drone’s camera has a 60-degree field of view (how wide it sees) and a satellite image resolution of 0.5 meters per pixel. I calculated how much of the image the drone sees based on its altitude using a formula: `size = 2 * altitude * tan(60°/2)`. This tells me how many pixels to include in the view.
    - **Step 4: Perspective Transformation**: I used OpenCV’s `findHomography` and `warpPerspective` functions to transform the satellite image to look like it’s from the drone’s angle. I adjusted the output based on the tilt angle to make it look like the camera is pointing up or down.
    - **Step 5: Bonus Features**:
@@ -46,7 +44,7 @@ Drone Camera Image Simulator was built for the Lendurai job assignment. As someo
 
 4. **Building and Testing**:
    - I used CMake to make the program easy to build on Ubuntu 24.04. I included a `CMakeLists.txt` file that links OpenCV and sets up the project.
-   - I tested the program with sample satellite images downloaded from [NASA Earthdata](https://search.earthdata.nasa.gov/) (an urban area of Tallinn by MODIS satellite [details](https://github.com/farzad-mos/CV_engineer_lendurai/blob/main/1_CV_programming/preprocessing/info.txt)) and tried different inputs (e.g., x=0.5, y=0.5, altitude=100m, tilt=30°). I checked that the output images looked correct, with the right part of the satellite image shown and proper tilting.
+   - I tested the program with sample satellite images downloaded from [NASA Earthdata](https://search.earthdata.nasa.gov/) (an urban area of Tallinn by MODIS satellite [details](https://github.com/farzad-mos/CV_engineer/blob/main/1_CV_programming/preprocessing/info.txt)) and tried different inputs (e.g., x=0.5, y=0.5, altitude=100m, tilt=30°). I checked that the output images looked correct, with the right part of the satellite image shown and proper tilting.
 
 5. **Challenges**:
    - **Challenge 1**: Understanding homography and perspective transformation was tricky (Founded on [OpenCV tutorials](https://docs.opencv.org/4.x/d9/df8/tutorial_root.html)).
