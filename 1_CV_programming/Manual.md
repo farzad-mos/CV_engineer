@@ -1,6 +1,6 @@
 # Drone Camera Image Simulator
 
-This program generates a simulated drone camera image from a satellite image, as per the Lendurai Computer Vision Engineer job assignment. It takes a satellite image and parameters (x, y, altitude, tilt) to produce an output image mimicking a drone's view. It supports optional winter and thermal effects.
+This program generates a simulated drone camera image from a satellite image. It takes a satellite image and parameters (x, y, altitude, tilt) to produce an output image mimicking a drone's view. It supports optional winter and thermal effects.
 
 ## Prerequisites
 - Ubuntu 24.04
